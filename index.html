@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knowledge Graph Visualizer</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-left">
+                <h1>Knowledge Graph</h1>
+                <div class="search-container">
+                    <input type="text" id="search-input" placeholder="Search nodes..." />
+                    <button id="search-btn">Search</button>
+                </div>
+            </div>
+            <div class="header-right">
+                <button id="add-node-btn" class="btn btn-primary">+ Add Node</button>
+                <button id="add-edge-btn" class="btn btn-secondary">+ Add Edge</button>
+                <button id="center-graph-btn" class="btn btn-secondary">Center</button>
+                <div class="dropdown">
+                    <button class="btn btn-secondary">File</button>
+                    <div class="dropdown-content">
+                        <a href="#" id="import-btn">Import JSON</a>
+                        <a href="#" id="export-btn">Export JSON</a>
+                        <a href="#" id="clear-btn">Clear Graph</a>
+                        <a href="#" id="load-sample-btn">Load Sample</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Graph Canvas -->
+            <div class="graph-container">
+                <svg id="graph-svg"></svg>
+                <div class="graph-controls">
+                    <button id="zoom-in-btn" class="control-btn">+</button>
+                    <button id="zoom-out-btn" class="control-btn">−</button>
+                    <button id="reset-zoom-btn" class="control-btn">⟲</button>
+                </div>
+                <div class="graph-stats">
+                    Nodes: <span id="node-count">0</span> |
+                    Edges: <span id="edge-count">0</span>
+                </div>
+            </div>
+
+            <!-- Side Panel -->
+            <div class="side-panel" id="side-panel">
+                <div class="panel-header">
+                    <h2 id="panel-title">Node Details</h2>
+                    <button id="close-panel-btn" class="close-btn">&times;</button>
+                </div>
+                <div class="panel-content" id="panel-content">
+                    <p class="empty-state">Select a node to view details</p>
+                </div>
+                <div class="panel-actions" id="panel-actions" style="display: none;">
+                    <button id="edit-node-btn" class="btn btn-primary">Edit</button>
+                    <button id="delete-node-btn" class="btn btn-danger">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Add/Edit Node -->
+    <div id="node-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title">Add Node</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="node-form">
+                    <div class="form-group">
+                        <label for="node-label">Label *</label>
+                        <input type="text" id="node-label" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="node-content">Content (Markdown)</label>
+                        <textarea id="node-content" rows="10" placeholder="# Heading&#10;&#10;Your markdown content here..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="node-tags">Tags (comma-separated)</label>
+                        <input type="text" id="node-tags" placeholder="tag1, tag2, tag3" />
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Save</button>
+                        <button type="button" class="btn btn-secondary" id="cancel-node-btn">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Add Edge -->
+    <div id="edge-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add Edge</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="edge-form">
+                    <div class="form-group">
+                        <label for="edge-source">Source Node *</label>
+                        <select id="edge-source" required></select>
+                    </div>
+                    <div class="form-group">
+                        <label for="edge-target">Target Node *</label>
+                        <select id="edge-target" required></select>
+                    </div>
+                    <div class="form-group">
+                        <label for="edge-label">Relationship Label</label>
+                        <input type="text" id="edge-label" placeholder="relates to, depends on, etc." />
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Create Edge</button>
+                        <button type="button" class="btn btn-secondary" id="cancel-edge-btn">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hidden file input for import -->
+    <input type="file" id="file-input" accept=".json" style="display: none;" />
+
+    <!-- Scripts -->
+    <script type="module" src="js/app.js"></script>
+</body>
+</html>
