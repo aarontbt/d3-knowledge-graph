@@ -1,0 +1,133 @@
+{
+  "nodes": [
+    {
+      "id": "node_1",
+      "label": "Knowledge Graph",
+      "content": "# Knowledge Graph\n\nA **knowledge graph** is a structured representation of knowledge that uses nodes (entities) and edges (relationships) to model information in a way that machines can understand and reason about.\n\n## Core Concepts\n\n- **Nodes**: Represent entities or concepts\n- **Edges**: Represent relationships between entities\n- **Properties**: Metadata associated with nodes and edges\n\n## Applications\n\n1. Search engines (Google Knowledge Graph)\n2. Recommendation systems\n3. Question answering systems\n4. Data integration\n5. Semantic web\n\n## Benefits\n\n- Improved data discoverability\n- Better context understanding\n- Enhanced reasoning capabilities\n- Flexible schema evolution",
+      "metadata": {
+        "created": "2025-10-21T00:00:00.000Z",
+        "tags": ["core", "concept", "data-structure"]
+      }
+    },
+    {
+      "id": "node_2",
+      "label": "D3.js",
+      "content": "# D3.js - Data-Driven Documents\n\nD3.js is a powerful JavaScript library for creating dynamic, interactive data visualizations in web browsers.\n\n## Key Features\n\n- **Data Binding**: Bind data to DOM elements\n- **Transformations**: Apply data-driven transformations\n- **Transitions**: Smooth animations between states\n- **Layouts**: Pre-built layouts for common visualizations\n\n## Force-Directed Graph\n\n```javascript\nconst simulation = d3.forceSimulation(nodes)\n  .force('link', d3.forceLink(links))\n  .force('charge', d3.forceManyBody())\n  .force('center', d3.forceCenter());\n```\n\n## Use Cases\n\n- Network graphs\n- Tree diagrams\n- Statistical charts\n- Geographic maps\n- Custom visualizations",
+      "metadata": {
+        "created": "2025-10-21T00:00:00.000Z",
+        "tags": ["technology", "visualization", "javascript"]
+      }
+    },
+    {
+      "id": "node_3",
+      "label": "Markdown",
+      "content": "# Markdown\n\nMarkdown is a lightweight markup language with plain text formatting syntax designed to be converted to HTML and many other formats.\n\n## Syntax Examples\n\n### Headings\n```markdown\n# H1\n## H2\n### H3\n```\n\n### Emphasis\n- **Bold**: `**text**` or `__text__`\n- *Italic*: `*text*` or `_text_`\n- ~~Strikethrough~~: `~~text~~`\n\n### Lists\n```markdown\n- Unordered item\n  - Nested item\n\n1. Ordered item\n2. Another item\n```\n\n### Links and Images\n```markdown\n[Link text](url)\n![Image alt](url)\n```\n\n### Code\n```markdown\nInline `code`\n\n```language\nCode block\n``` \n```\n\n## Why Use Markdown?\n\n- Easy to read and write\n- Platform independent\n- Widely supported\n- Version control friendly",
+      "metadata": {
+        "created": "2025-10-21T00:00:00.000Z",
+        "tags": ["technology", "markup", "documentation"]
+      }
+    },
+    {
+      "id": "node_4",
+      "label": "Graph Theory",
+      "content": "# Graph Theory\n\nGraph theory is the mathematical study of graphs, which are structures used to model pairwise relations between objects.\n\n## Fundamental Components\n\n### Vertices (Nodes)\nPoints or entities in the graph, typically represented as circles or dots.\n\n### Edges (Links)\nConnections between vertices, representing relationships.\n\n### Types of Graphs\n\n1. **Directed Graph**: Edges have direction (A → B)\n2. **Undirected Graph**: Edges are bidirectional (A — B)\n3. **Weighted Graph**: Edges have associated weights/costs\n4. **Cyclic Graph**: Contains cycles (closed paths)\n5. **Acyclic Graph**: No cycles (DAG - Directed Acyclic Graph)\n\n## Common Algorithms\n\n- **Traversal**: DFS (Depth-First Search), BFS (Breadth-First Search)\n- **Shortest Path**: Dijkstra's, A*, Bellman-Ford\n- **Minimum Spanning Tree**: Kruskal's, Prim's\n- **Network Flow**: Ford-Fulkerson\n\n## Applications\n\n- Social networks\n- Transportation networks\n- Computer networks\n- Dependency analysis\n- Knowledge representation",
+      "metadata": {
+        "created": "2025-10-21T00:00:00.000Z",
+        "tags": ["concept", "mathematics", "theory"]
+      }
+    },
+    {
+      "id": "node_5",
+      "label": "SPA Architecture",
+      "content": "# Single Page Application (SPA)\n\nA web application that loads a single HTML page and dynamically updates content as the user interacts with the app, without full page reloads.\n\n## Architecture Pattern\n\n```\n┌─────────────────────────────────┐\n│     Single HTML Page            │\n├─────────────────────────────────┤\n│  JavaScript Application Logic   │\n├─────────────────────────────────┤\n│  Dynamic Content Updates         │\n│  (No Page Reload)               │\n└─────────────────────────────────┘\n```\n\n## Core Principles\n\n1. **Client-Side Routing**: URL changes without server requests\n2. **State Management**: Application state on the client\n3. **API Communication**: RESTful or GraphQL APIs\n4. **Lazy Loading**: Load resources as needed\n\n## Benefits\n\n- Fast, responsive user experience\n- Reduced server load\n- Smooth transitions and animations\n- Offline capability (with service workers)\n- Mobile-app-like feel\n\n## Challenges\n\n- SEO optimization\n- Initial load time\n- Browser history management\n- Memory management\n\n## Popular Frameworks\n\n- React\n- Vue.js\n- Angular\n- Svelte",
+      "metadata": {
+        "created": "2025-10-21T00:00:00.000Z",
+        "tags": ["architecture", "web", "design-pattern"]
+      }
+    },
+    {
+      "id": "node_6",
+      "label": "JSON Format",
+      "content": "# JSON - JavaScript Object Notation\n\nJSON is a lightweight data interchange format that is easy for humans to read and write and easy for machines to parse and generate.\n\n## Structure\n\n### Basic Types\n```json\n{\n  \"string\": \"text\",\n  \"number\": 42,\n  \"boolean\": true,\n  \"null\": null,\n  \"array\": [1, 2, 3],\n  \"object\": {\n    \"nested\": \"value\"\n  }\n}\n```\n\n## Graph Representation\n\n```json\n{\n  \"nodes\": [\n    {\"id\": \"1\", \"label\": \"Node A\"},\n    {\"id\": \"2\", \"label\": \"Node B\"}\n  ],\n  \"edges\": [\n    {\"source\": \"1\", \"target\": \"2\", \"label\": \"connects\"}\n  ]\n}\n```\n\n## Advantages\n\n- Human-readable\n- Language-independent\n- Compact format\n- Native JavaScript support\n- Schema validation (JSON Schema)\n\n## Use Cases\n\n- API responses\n- Configuration files\n- Data storage\n- Message passing\n- State serialization",
+      "metadata": {
+        "created": "2025-10-21T00:00:00.000Z",
+        "tags": ["format", "data", "technology"]
+      }
+    },
+    {
+      "id": "node_7",
+      "label": "Force-Directed Layout",
+      "content": "# Force-Directed Graph Layout\n\nA graph drawing algorithm that positions nodes using a physical simulation of forces.\n\n## Physical Model\n\n### Forces Applied\n\n1. **Repulsion Force**: Nodes repel each other (like charged particles)\n2. **Attraction Force**: Connected nodes attract (like springs)\n3. **Centering Force**: Keeps graph centered in viewport\n4. **Collision Force**: Prevents node overlap\n\n## Algorithm\n\n```javascript\n// Pseudo-code\nwhile (not stable) {\n  for each node {\n    calculate_repulsion_forces()\n    calculate_attraction_forces()\n    calculate_other_forces()\n  }\n  \n  update_positions()\n  reduce_temperature()\n}\n```\n\n## Parameters\n\n- **Link Distance**: Ideal edge length\n- **Charge Strength**: Repulsion magnitude\n- **Alpha**: Simulation cooling rate\n- **Collision Radius**: Node boundary size\n\n## Benefits\n\n- Aesthetically pleasing layouts\n- Reveals graph structure\n- Interactive and dynamic\n- Automatic positioning\n\n## Limitations\n\n- Can be slow for large graphs (>1000 nodes)\n- Non-deterministic results\n- May require manual adjustment",
+      "metadata": {
+        "created": "2025-10-21T00:00:00.000Z",
+        "tags": ["algorithm", "visualization", "layout"]
+      }
+    },
+    {
+      "id": "node_8",
+      "label": "LocalStorage API",
+      "content": "# Web Storage API - localStorage\n\nThe localStorage API provides a way to store key-value pairs in a web browser with no expiration time.\n\n## Basic Operations\n\n### Store Data\n```javascript\nlocalStorage.setItem('key', 'value');\n```\n\n### Retrieve Data\n```javascript\nconst value = localStorage.getItem('key');\n```\n\n### Remove Data\n```javascript\nlocalStorage.removeItem('key');\n```\n\n### Clear All\n```javascript\nlocalStorage.clear();\n```\n\n## JSON Storage\n\n```javascript\n// Store object\nconst data = { nodes: [], edges: [] };\nlocalStorage.setItem('graph', JSON.stringify(data));\n\n// Retrieve object\nconst graph = JSON.parse(localStorage.getItem('graph'));\n```\n\n## Characteristics\n\n- **Persistent**: Data survives browser restarts\n- **Synchronous**: Blocking API calls\n- **Domain-specific**: Isolated per origin\n- **Capacity**: ~5-10MB per domain\n- **String-only**: Must serialize objects\n\n## Use Cases\n\n- User preferences\n- Application state\n- Offline data cache\n- Session persistence\n- Draft auto-save",
+      "metadata": {
+        "created": "2025-10-21T00:00:00.000Z",
+        "tags": ["api", "web", "storage"]
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "node_1",
+      "target": "node_2",
+      "label": "visualized with"
+    },
+    {
+      "source": "node_1",
+      "target": "node_3",
+      "label": "content in"
+    },
+    {
+      "source": "node_1",
+      "target": "node_4",
+      "label": "based on"
+    },
+    {
+      "source": "node_1",
+      "target": "node_6",
+      "label": "stored as"
+    },
+    {
+      "source": "node_2",
+      "target": "node_4",
+      "label": "implements"
+    },
+    {
+      "source": "node_2",
+      "target": "node_7",
+      "label": "uses layout"
+    },
+    {
+      "source": "node_5",
+      "target": "node_2",
+      "label": "renders with"
+    },
+    {
+      "source": "node_5",
+      "target": "node_1",
+      "label": "displays"
+    },
+    {
+      "source": "node_5",
+      "target": "node_8",
+      "label": "persists via"
+    },
+    {
+      "source": "node_6",
+      "target": "node_8",
+      "label": "stored in"
+    },
+    {
+      "source": "node_7",
+      "target": "node_4",
+      "label": "applies theory"
+    }
+  ]
+}
