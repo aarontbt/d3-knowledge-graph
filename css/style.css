@@ -589,3 +589,165 @@ body {
         right: 0;
     }
 }
+
+/* ETL Modal Styles */
+.modal-large {
+    max-width: 800px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.etl-step {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: var(--medium-bg);
+    border-radius: 8px;
+}
+
+.etl-step h3 {
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+    font-size: 1.1rem;
+}
+
+.source-buttons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+}
+
+.source-btn {
+    padding: 1rem;
+    text-align: center;
+    border: 2px solid transparent;
+    transition: all 0.3s;
+}
+
+.source-btn.active {
+    border-color: var(--primary-color);
+    background-color: var(--light-bg);
+}
+
+.source-btn:hover {
+    border-color: var(--primary-color);
+}
+
+.transform-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.transform-options label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 4px;
+    transition: background 0.2s;
+}
+
+.transform-options label:hover {
+    background: var(--light-bg);
+}
+
+.transform-options input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 24px;
+    background: var(--medium-bg);
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 1rem 0;
+    border: 1px solid var(--border-color);
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-color), var(--node-hover));
+    transition: width 0.3s ease;
+    width: 0%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+#etl-progress-text {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+#etl-stage-text {
+    text-align: center;
+    color: var(--primary-color);
+    font-weight: 600;
+    margin-top: 0.5rem;
+}
+
+#etl-results {
+    background: var(--medium-bg);
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+#etl-results h4 {
+    color: var(--success-color);
+    margin-bottom: 0.5rem;
+}
+
+#etl-results .result-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+#etl-results .result-item:last-child {
+    border-bottom: none;
+}
+
+#etl-results .result-label {
+    color: var(--text-secondary);
+}
+
+#etl-results .result-value {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.etl-config-group {
+    margin-bottom: 1rem;
+}
+
+.etl-file-input {
+    display: block;
+    width: 100%;
+    padding: 0.75rem;
+    background: var(--dark-bg);
+    border: 2px dashed var(--border-color);
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.3s;
+}
+
+.etl-file-input:hover {
+    border-color: var(--primary-color);
+    background: var(--medium-bg);
+}
+
+.etl-file-input.has-file {
+    border-color: var(--success-color);
+    border-style: solid;
+}
