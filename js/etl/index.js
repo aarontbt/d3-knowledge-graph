@@ -29,3 +29,4 @@ export { Logger, LogLevel } from './utils/logger.js';
 export { ErrorHandler, ETLError, ExtractionError, ValidationError, TransformationError, LoadError } from './utils/error-handler.js';
 export { ProgressTracker } from './utils/progress-tracker.js';
 export { nodeSchema, edgeSchema, graphSchema, csvNodeSchema, csvEdgeSchema } from './utils/schemas.js';
+export { escapeHtml, sanitizeText, validateUrl, validateFile, sanitizeFilename, validateJSON, RateLimiter } from './utils/security.js';

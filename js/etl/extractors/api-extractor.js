@@ -5,11 +5,13 @@
 
 import { BaseExtractor } from './base-extractor.js';
 import { ExtractionError } from '../utils/error-handler.js';
+import { validateUrl, RateLimiter } from '../utils/security.js';
 
 export class APIExtractor extends BaseExtractor {
     constructor(logger = null) {
         super(logger);
         this.type = 'api';
+        this.rateLimiter = new RateLimiter(30, 60000); // 30 requests per minute
     }
 
     async extract(config) {
@@ -39,6 +41,20 @@ export class APIExtractor extends BaseExtractor {
     }
 
     async fetchData(config) {
+        // Validate URL for SSRF protection
+        const urlValidation = validateUrl(config.url);
+        if (!urlValidation.valid) {
+            throw new ExtractionError('Invalid or dangerous URL', {
+                url: config.url,
+                reason: urlValidation.error
+            });
+        }
+
+        // Check rate limit
+        if (!this.rateLimiter.canMakeRequest()) {
+            throw new ExtractionError('Rate limit exceeded. Please wait before making more requests.');
+        }
+
         const options = {
             method: config.method || 'GET',
             headers: this.buildHeaders(config)
@@ -49,7 +65,7 @@ export class APIExtractor extends BaseExtractor {
         }
 
         try {
-            const response = await fetch(config.url, options);
+            const response = await fetch(urlValidation.url, options);
 
             if (!response.ok) {
                 throw new ExtractionError('API request failed', {

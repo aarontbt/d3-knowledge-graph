@@ -5,6 +5,7 @@
 
 import { BaseExtractor } from './base-extractor.js';
 import { ExtractionError } from '../utils/error-handler.js';
+import { validateJSON, validateUrl } from '../utils/security.js';
 
 export class JSONExtractor extends BaseExtractor {
     constructor(logger = null) {
@@ -33,14 +34,20 @@ export class JSONExtractor extends BaseExtractor {
                     throw new ExtractionError('Invalid source type', { source: config.source });
             }
 
-            const data = JSON.parse(jsonText);
+            // Validate and parse JSON with security checks
+            const validation = validateJSON(jsonText);
+            if (!validation.valid) {
+                throw new ExtractionError('JSON validation failed', { error: validation.error });
+            }
+
+            const data = validation.data;
             this.log('info', 'JSON extraction completed', { dataSize: JSON.stringify(data).length });
 
             return data;
 
         } catch (error) {
-            if (error instanceof SyntaxError) {
-                throw new ExtractionError('Invalid JSON format', { originalError: error.message });
+            if (error instanceof ExtractionError) {
+                throw error;
             }
             throw new ExtractionError('JSON extraction failed', { originalError: error.message });
         }
@@ -63,8 +70,17 @@ export class JSONExtractor extends BaseExtractor {
     }
 
     async extractFromURL(url) {
+        // Validate URL for SSRF protection
+        const urlValidation = validateUrl(url);
+        if (!urlValidation.valid) {
+            throw new ExtractionError('Invalid or dangerous URL', {
+                url,
+                reason: urlValidation.error
+            });
+        }
+
         try {
-            const response = await fetch(url);
+            const response = await fetch(urlValidation.url);
 
             if (!response.ok) {
                 throw new ExtractionError('Failed to fetch JSON from URL', {

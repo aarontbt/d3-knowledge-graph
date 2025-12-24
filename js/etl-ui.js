@@ -4,6 +4,7 @@
  */
 
 import { ETLManager } from './etl/etl-manager.js';
+import { escapeHtml, sanitizeText } from './etl/utils/security.js';
 
 export class ETLUI {
     constructor(dataManager, app) {
@@ -452,8 +453,9 @@ export class ETLUI {
 
         resultsDiv.innerHTML = `
             <h4 style="color: var(--danger-color);">Import Failed</h4>
-            <p style="color: var(--text-secondary); margin-top: 0.5rem;">
+        const safeMessage = escapeHtml(error.message || 'An unknown error occurred');
                 ${error.message || 'An unknown error occurred'}
+ 
             </p>
         `;
     }

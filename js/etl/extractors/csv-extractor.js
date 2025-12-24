@@ -5,6 +5,7 @@
 
 import { BaseExtractor } from './base-extractor.js';
 import { ExtractionError } from '../utils/error-handler.js';
+import { validateFile } from '../utils/security.js';
 
 export class CSVExtractor extends BaseExtractor {
     constructor(logger = null) {
@@ -15,6 +16,17 @@ export class CSVExtractor extends BaseExtractor {
     async extract(config) {
         this.validateConfig(config);
         this.log('info', 'Starting CSV extraction');
+
+        // Validate file
+        const fileValidation = validateFile(config.file, {
+            maxSize: 50 * 1024 * 1024, // 50MB max for CSV
+            allowedTypes: ['text/csv', 'text/plain', 'application/vnd.ms-excel'],
+            allowedExtensions: ['csv', 'txt']
+        });
+
+        if (!fileValidation.valid) {
+            throw new ExtractionError('File validation failed', { error: fileValidation.error });
+        }
 
         // Check if PapaParse is available
         if (typeof Papa === 'undefined') {

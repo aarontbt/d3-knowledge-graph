@@ -5,6 +5,7 @@
 
 import { BaseExtractor } from './base-extractor.js';
 import { ExtractionError } from '../utils/error-handler.js';
+import { validateFile } from '../utils/security.js';
 
 export class MarkdownExtractor extends BaseExtractor {
     constructor(logger = null) {
@@ -43,6 +44,20 @@ export class MarkdownExtractor extends BaseExtractor {
     }
 
     async extractFromFile(file, config) {
+        // Validate file
+        const fileValidation = validateFile(file, {
+            maxSize: 10 * 1024 * 1024, // 10MB max for markdown
+            allowedTypes: ['text/markdown', 'text/plain'],
+            allowedExtensions: ['md', 'markdown', 'txt']
+        });
+
+        if (!fileValidation.valid) {
+            throw new ExtractionError('File validation failed', {
+                filename: file.name,
+                error: fileValidation.error
+            });
+        }
+
         const content = await this.readFile(file);
         const metadata = config.extractMetadata ? this.extractFrontmatter(content) : {};
 
