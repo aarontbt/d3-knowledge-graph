@@ -15,6 +15,15 @@ A modern, interactive knowledge graph web application for visualizing and managi
 - **Data Persistence**: Automatic saving to browser localStorage
 - **Import/Export**: Load and save graphs as JSON files
 
+### ETL Framework (NEW!)
+- **Multiple Data Sources**: Import from CSV, JSON, REST APIs, and Markdown files
+- **Data Transformation**: Validate, normalize, enrich, and deduplicate data
+- **Smart Merging**: Multiple strategies for combining new and existing data
+- **Batch Processing**: Efficient handling of large datasets with progress tracking
+- **Automatic Edge Generation**: Create connections from markdown wiki-links
+- **Metadata Extraction**: Auto-extract keywords, hashtags, and content statistics
+- **Dry Run Mode**: Preview imports before applying changes
+
 ### User Interface
 - **Responsive Design**: Works on desktop and mobile devices
 - **Dark Theme**: Easy-on-the-eyes interface with modern styling
@@ -184,20 +193,28 @@ Search looks through:
 
 ### Import/Export
 
+**ETL Import** (Recommended):
+1. Click **"File"** → **"ETL Import"**
+2. Select data source (CSV, JSON, API, or Markdown)
+3. Configure import settings
+4. Choose transformation options
+5. Select merge strategy
+6. Click **"Import"**
+
+See [ETL User Guide](docs/ETL_USER_GUIDE.md) for detailed instructions.
+
+**Traditional Import**:
+1. Click **"File"** → **"Import JSON"**
+2. Select a JSON file (graph format)
+3. Your current graph is replaced
+
 **Export**:
 1. Click **"File"** → **"Export JSON"**
 2. Your graph is downloaded as a JSON file
 
-**Import**:
-1. Click **"File"** → **"Import JSON"**
-2. Select a JSON file
-3. Your current graph is replaced
-
-**Load Sample**:
-- Click **"File"** → **"Load Sample"** to see an example graph
-
-**Clear Graph**:
-- Click **"File"** → **"Clear Graph"** to start fresh
+**Other Options**:
+- **Load Sample**: Click **"File"** → **"Load Sample"** to see an example graph
+- **Clear Graph**: Click **"File"** → **"Clear Graph"** to start fresh
 
 ### Graph Controls
 
@@ -243,6 +260,7 @@ Code blocks
 
 - **D3.js v7**: Data visualization and force simulation
 - **Marked.js**: Markdown parsing and rendering
+- **PapaParse**: CSV parsing for ETL imports
 - **Vanilla JavaScript**: ES6 modules, no framework dependencies
 - **LocalStorage API**: Client-side data persistence
 - **CSS3**: Modern styling with CSS Grid and Flexbox
@@ -300,6 +318,37 @@ Edit CSS variables in `css/style.css`:
 }
 ```
 
+## ETL Framework
+
+The built-in ETL (Extract, Transform, Load) framework enables powerful data import capabilities:
+
+### Data Sources
+
+- **CSV Files**: Import nodes and edges from spreadsheets
+- **JSON Files**: Import from various JSON formats
+- **REST APIs**: Fetch data from web services
+- **Markdown Files**: Import notes with automatic linking
+
+### Transformations
+
+- **Validator**: Validate data structure and integrity
+- **Normalizer**: Convert data to standard graph format
+- **Enricher**: Extract keywords, hashtags, and statistics
+- **Deduplicator**: Merge or skip duplicate nodes
+
+### Load Strategies
+
+- **Merge**: Update existing, add new (recommended)
+- **Replace**: Clear all and load new
+- **Update**: Modify existing, add new
+- **Append**: Add new only, skip existing
+
+### Documentation
+
+- **[ETL User Guide](docs/ETL_USER_GUIDE.md)**: Step-by-step usage instructions
+- **[ETL Architecture](docs/ETL_ARCHITECTURE.md)**: Technical architecture documentation
+- **[Test Data](test-data/)**: Sample files for testing ETL imports
+
 ## Use Cases
 
 - **Personal Knowledge Management**: Organize notes, ideas, and concepts
@@ -308,6 +357,8 @@ Edit CSS variables in `css/style.css`:
 - **Learning**: Create study guides with interconnected topics
 - **Documentation**: Build interactive documentation systems
 - **Brainstorming**: Capture and connect ideas visually
+- **Data Migration**: Import existing notes from Markdown, CSV, or APIs
+- **Knowledge Base**: Build interconnected documentation from multiple sources
 
 ## Performance
 

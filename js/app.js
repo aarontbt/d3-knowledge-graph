@@ -6,6 +6,7 @@
 import { GraphVisualizer } from './graph.js';
 import { DataManager } from './data-manager.js';
 import { MarkdownRenderer } from './markdown-renderer.js';
+import { ETLUI } from './etl-ui.js';
 
 class KnowledgeGraphApp {
     constructor() {
@@ -24,6 +25,9 @@ class KnowledgeGraphApp {
 
         // Edit mode
         this.editingNodeId = null;
+
+        // Initialize ETL UI
+        this.etlUI = new ETLUI(this.dataManager, this);
 
         // Initialize UI
         this.initUI();
@@ -51,6 +55,10 @@ class KnowledgeGraphApp {
         document.getElementById('import-btn').addEventListener('click', (e) => {
             e.preventDefault();
             this.handleImport();
+        });
+        document.getElementById('etl-import-btn').addEventListener('click', (e) => {
+            e.preventDefault();
+            this.etlUI.showModal();
         });
         document.getElementById('export-btn').addEventListener('click', (e) => {
             e.preventDefault();

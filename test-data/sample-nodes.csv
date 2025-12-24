@@ -1,0 +1,9 @@
+label,content,tags
+Machine Learning,# Machine Learning\n\nMachine learning is a subset of artificial intelligence that focuses on teaching computers to learn from data.,AI;technology;data-science
+Neural Networks,# Neural Networks\n\nArtificial neural networks are computing systems inspired by biological neural networks.,AI;technology;deep-learning
+Python,# Python Programming\n\nPython is a high-level programming language widely used in data science and AI.,programming;language;data-science
+Data Science,# Data Science\n\nData science combines statistics programming and domain expertise to extract insights from data.,analysis;statistics;technology
+TensorFlow,# TensorFlow\n\nTensorFlow is an open-source machine learning framework developed by Google.,framework;AI;Google
+Deep Learning,# Deep Learning\n\nDeep learning is a subset of machine learning based on artificial neural networks.,AI;neural-networks;technology
+Keras,# Keras\n\nKeras is a high-level neural networks API written in Python.,framework;AI;Python
+Natural Language Processing,# NLP\n\nNLP is a branch of AI focused on interaction between computers and human language.,AI;linguistics;technology

@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="css/style.css">
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <!-- ETL Framework Dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
 </head>
 <body>
     <div class="app-container">
@@ -27,6 +29,7 @@
                     <button class="btn btn-secondary">File</button>
                     <div class="dropdown-content">
                         <a href="#" id="import-btn">Import JSON</a>
+                        <a href="#" id="etl-import-btn">ETL Import</a>
                         <a href="#" id="export-btn">Export JSON</a>
                         <a href="#" id="clear-btn">Clear Graph</a>
                         <a href="#" id="load-sample-btn">Load Sample</a>
@@ -130,6 +133,84 @@
 
     <!-- Hidden file input for import -->
     <input type="file" id="file-input" accept=".json" style="display: none;" />
+
+    <!-- Modal for ETL Import -->
+    <div id="etl-modal" class="modal">
+        <div class="modal-content modal-large">
+            <div class="modal-header">
+                <h2>ETL Import</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <!-- Source Selection -->
+                <div class="etl-step">
+                    <h3>1. Select Data Source</h3>
+                    <div class="source-buttons">
+                        <button type="button" class="btn btn-secondary source-btn" data-source="json">JSON File</button>
+                        <button type="button" class="btn btn-secondary source-btn" data-source="csv">CSV File</button>
+                        <button type="button" class="btn btn-secondary source-btn" data-source="api">REST API</button>
+                        <button type="button" class="btn btn-secondary source-btn" data-source="markdown">Markdown Files</button>
+                    </div>
+                </div>
+
+                <!-- Source Configuration -->
+                <div id="etl-source-config" class="etl-step" style="display: none;">
+                    <h3>2. Configure Source</h3>
+                    <div id="etl-config-panel"></div>
+                </div>
+
+                <!-- Transformation Options -->
+                <div id="etl-transform-config" class="etl-step" style="display: none;">
+                    <h3>3. Transformation Options</h3>
+                    <div class="transform-options">
+                        <label><input type="checkbox" id="etl-validate" checked> Validate data structure</label>
+                        <label><input type="checkbox" id="etl-normalize" checked> Normalize to graph schema</label>
+                        <label><input type="checkbox" id="etl-enrich"> Enrich with metadata (keywords, stats)</label>
+                        <label><input type="checkbox" id="etl-dedupe" checked> Remove duplicates</label>
+                    </div>
+                </div>
+
+                <!-- Load Strategy -->
+                <div id="etl-load-config" class="etl-step" style="display: none;">
+                    <h3>4. Load Strategy</h3>
+                    <div class="form-group">
+                        <label for="etl-strategy">How to merge with existing data?</label>
+                        <select id="etl-strategy">
+                            <option value="merge">Merge (update existing, add new)</option>
+                            <option value="replace">Replace (clear all existing)</option>
+                            <option value="update">Update (modify existing, add new)</option>
+                            <option value="append">Append (add new only)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label><input type="checkbox" id="etl-dry-run"> Dry run (preview only, don't save)</label>
+                    </div>
+                </div>
+
+                <!-- Progress -->
+                <div id="etl-progress-container" style="display: none;">
+                    <h3>Progress</h3>
+                    <div class="progress-bar">
+                        <div id="etl-progress-bar" class="progress-fill"></div>
+                    </div>
+                    <p id="etl-progress-text">Processing...</p>
+                    <div id="etl-stage-text"></div>
+                </div>
+
+                <!-- Results -->
+                <div id="etl-results-container" style="display: none;">
+                    <h3>Results</h3>
+                    <div id="etl-results"></div>
+                </div>
+
+                <!-- Actions -->
+                <div class="form-actions">
+                    <button type="button" id="etl-execute-btn" class="btn btn-primary" disabled>Import</button>
+                    <button type="button" id="etl-cancel-btn" class="btn btn-secondary">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Scripts -->
     <script type="module" src="js/app.js"></script>
